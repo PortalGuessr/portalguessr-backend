@@ -11,14 +11,12 @@ import mongoose from "mongoose";
 import dotenv from "dotenv";
 import cors from "cors";
 import chamberRoute from "./routes/chamber.route.js";
-import userRouter from "./routes/user.route.js";
 
 const app = express();
 app.use(cors());
 app.use(express.json());
 
 app.use("/chambers", chamberRoute);
-app.use("/users", userRouter);
 
 dotenv.config();
 const DATABASE_URI = process.env.MONGODB_DATABASE_URL;
