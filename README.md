@@ -47,6 +47,10 @@ These are all the server routes and their purposes as of 27/10/2023.
 - Run `npm install` to install the required dependencies.
 - Run `npm start` to start the server or `npm run dev` with Nodemon.
 
+## Trello Workspace
+
+The official trello workspace for this project: <https://trello.com/b/NgVubCDX/portalguessr-fullstack>
+
 ## Discord
 
 Join the Discord server to get the latest news about PortalGuessr: https://discord.gg/djWRTEM8XZ
