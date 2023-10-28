@@ -20,7 +20,7 @@ app.use("/chambers", chamberRoute);
 
 dotenv.config();
 const DATABASE_URI = process.env.MONGODB_DATABASE_URL;
-const PORT = process.env.MONGODB_DATABASE_URL || 443;
+const PORT = process.env.SERVER_PORT || 443;
 
 // Connecting to MongoDB then establishing a connection.
 async function main(url, port) {
