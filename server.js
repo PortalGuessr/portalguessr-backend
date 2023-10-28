@@ -2,7 +2,7 @@
 ================================================================================
 Copyright (c) 2023 XnonXte
 This project is released under MIT License.
-GitHub repo: https://github.com/XnonXte/PortalGuessr-FullStack
+GitHub repo: https://github.com/PortalGuessr/PortalGuessr-Backend
 ================================================================================
 */
 
@@ -20,7 +20,7 @@ app.use("/chambers", chamberRoute);
 
 dotenv.config();
 const DATABASE_URI = process.env.MONGODB_DATABASE_URL;
-const PORT = 5000;
+const PORT = process.env.MONGODB_DATABASE_URL || 443;
 
 // Connecting to MongoDB then establishing a connection.
 async function main(url, port) {

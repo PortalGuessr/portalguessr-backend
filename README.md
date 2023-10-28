@@ -43,7 +43,7 @@ These are all the server routes and their purposes as of 27/10/2023.
 ## Installation
 
 - Download the latest release if available.
-- Create a `.env` file containing `MONGODB_DATABASE_URL` for your MongoDB URL and `SERVER_PORT` for the server's port.
+- Create a `.env` file containing `MONGODB_DATABASE_URL` for your MongoDB URL and `SERVER_PORT` if you want to specify the server's port.
 - Run `npm install` to install the required dependencies.
 - Run `npm start` to start the server or `npm run dev` with Nodemon.
 
