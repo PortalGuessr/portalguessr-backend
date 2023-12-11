@@ -1,5 +1,5 @@
 import { Router } from "express";
-import Score from "../models/pgbot/pgbotLeaderboard.model.js";
+import Score from "../models/bot/score.js";
 
 const router = Router();
 
