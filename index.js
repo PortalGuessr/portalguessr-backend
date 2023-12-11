@@ -11,12 +11,14 @@ import mongoose from "mongoose";
 import dotenv from "dotenv";
 import cors from "cors";
 import chamberRoute from "./routes/chamber.route.js";
+import pgbotLeaderboardRoute from "./routes/pgbotLeaderboard.route.js";
 
 const app = express();
 app.use(cors());
 app.use(express.json());
 
 app.use("/chambers", chamberRoute);
+app.use("/pgbot-leaderboard", pgbotLeaderboardRoute);
 
 dotenv.config();
 const DATABASE_URI = process.env.MONGODB_DATABASE_URL;

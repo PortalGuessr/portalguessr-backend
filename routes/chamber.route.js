@@ -1,5 +1,5 @@
 import { Router } from "express";
-import Chamber from "../models/chamber.model.js";
+import Chamber from "../models/chamber/chamber.model.js";
 import { shuffleArray } from "../utils/shuffleArray.js";
 import { convertToEndpoints } from "../utils/convertToEndpoints.js";
 
