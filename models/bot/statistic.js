@@ -1,12 +1,11 @@
 import mongoose from "mongoose";
-import crypto from "crypto";
 
-const ScoreSchema = new mongoose.Schema({
-  discordUserId: {
-    type: Number,
+const StatisticSchema = new mongoose.Schema({
+  userId: {
+    type: String,
     unique: true,
     required: true,
-    default: crypto.randomBytes(8).readUint32LE(0),
+    default: "",
   },
   scores: {
     type: Object,
@@ -30,6 +29,6 @@ const ScoreSchema = new mongoose.Schema({
   },
 });
 
-const Score = mongoose.model("Leaderboard", ScoreSchema);
+const Statistic = mongoose.model("Statistic", StatisticSchema);
 
-export default Score;
+export default Statistic;

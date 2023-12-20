@@ -10,15 +10,15 @@ import express from "express";
 import mongoose from "mongoose";
 import dotenv from "dotenv";
 import cors from "cors";
-import chamberRoute from "./routes/chamber.js";
-import botLeaderboard from "./routes/botLeaderboard.js";
+import chamberRoute from "./routes/chamber/chamber.js";
+import statisticRoute from "./routes/bot/statistic.js";
 
 const app = express();
 app.use(cors());
 app.use(express.json());
 
 app.use("/chambers", chamberRoute);
-app.use("/bot/lb", botLeaderboard);
+app.use("/bot/lb", statisticRoute);
 
 dotenv.config();
 const DATABASE_URI = process.env.MONGODB_DATABASE_URL;

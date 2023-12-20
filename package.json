@@ -7,7 +7,7 @@
     "mongoose": "^7.5.0"
   },
   "scripts": {
-    "startDev": "nodemon index.js"
+    "dev": "nodemon index.js"
   },
   "name": "backend",
   "version": "1.0.0",
