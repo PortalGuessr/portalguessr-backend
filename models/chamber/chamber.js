@@ -28,11 +28,11 @@ const ChamberSchema = new mongoose.Schema({
   },
   createdAt: {
     type: Date,
-    default: new Date(Date.UTC()),
+    default: new Date(),
   },
   updatedDate: {
     type: Date,
-    default: new Date(Date.UTC()),
+    default: new Date(),
   },
 });
 

@@ -11,7 +11,7 @@ const ChamberSubmissionSchema = new mongoose.Schema({
     type: String,
     required: true,
     unique: true,
-    default: `${crypto.randomBytes(8).toString("hex")}-${new Date(Date.UTC())}`,
+    default: `${crypto.randomBytes(8).toString("hex")}-${new Date()}`,
   },
   submissionUserId: {
     type: Number,
@@ -26,12 +26,12 @@ const ChamberSubmissionSchema = new mongoose.Schema({
   createdDate: {
     type: Date,
     required: true,
-    default: new Date(Date.UTC()),
+    default: new Date(),
   },
   updatedDate: {
     type: Date,
     required: true,
-    default: new Date(Date.UTC()),
+    default: new Date(),
   },
 });
 
