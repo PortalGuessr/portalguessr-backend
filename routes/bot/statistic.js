@@ -67,7 +67,7 @@ router.patch("/:userId", async (req, res) => {
   try {
     const userId = req.params.userId;
     const scores = req.body.scores;
-    const updatedDate = new Date();
+    const updatedDate = new Date(Date.UTC());
 
     const result = await Statistic.findOneAndUpdate(
       { userId },

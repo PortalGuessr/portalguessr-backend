@@ -22,17 +22,17 @@ const ChamberSchema = new mongoose.Schema({
   bhHash: {
     type: String,
     unique: true,
-    default: `placeholder-${crypto
-      .randomBytes(8)
-      .toString("hex")}-${new Date()}`,
+    default: `placeholder-${crypto.randomBytes(8).toString("hex")}-${new Date(
+      Date.UTC()
+    )}`,
   },
   createdAt: {
     type: Date,
-    default: new Date(),
+    default: new Date(Date.UTC()),
   },
   updatedDate: {
     type: Date,
-    default: new Date(),
+    default: new Date(Date.UTC()),
   },
 });
 

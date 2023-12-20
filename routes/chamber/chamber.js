@@ -100,7 +100,7 @@ router.patch("/:id", async (req, res) => {
 
     const response = await Chamber.findByIdAndUpdate(id, {
       ...body,
-      updatedDate: new Date(),
+      updatedDate: new Date(Date.UTC()),
     });
 
     res.json(response);

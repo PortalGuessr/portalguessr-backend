@@ -20,12 +20,12 @@ const StatisticSchema = new mongoose.Schema({
   createdDate: {
     type: Date,
     required: true,
-    default: new Date(),
+    default: new Date(Date.UTC()),
   },
   updatedDate: {
     type: Date,
     required: true,
-    default: new Date(),
+    default: new Date(Date.UTC()),
   },
 });
 
