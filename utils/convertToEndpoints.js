@@ -4,7 +4,6 @@
  */
 export function convertToEndpoints(difficulty) {
   let difficultyContinuation;
-
   switch (difficulty) {
     case "e":
       difficultyContinuation = "Easy";
@@ -19,6 +18,5 @@ export function convertToEndpoints(difficulty) {
       difficultyContinuation = "Very Hard";
       break;
   }
-
   return difficultyContinuation;
 }

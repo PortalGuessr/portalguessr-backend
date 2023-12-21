@@ -15,24 +15,24 @@ const ChamberSchema = new mongoose.Schema({
     type: String,
     required: true,
   },
-  fileId: {
+  chamberId: {
     type: String,
-    default: () => crypto.randomBytes(16).toString("hex"),
+    default: () =>
+      `${crypto.randomBytes(6).toString("hex")}-${Math.floor(
+        Date.now() / 1000
+      )}`,
   },
   bhHash: {
     type: String,
-    unique: true,
-    default: `placeholder-${crypto.randomBytes(8).toString("hex")}-${new Date(
-      Date.UTC()
-    )}`,
+    default: "",
   },
-  createdAt: {
-    type: Date,
-    default: new Date(),
+  createdStamp: {
+    type: Number,
+    default: () => Math.floor(Date.now() / 1000),
   },
-  updatedDate: {
-    type: Date,
-    default: new Date(),
+  updatedStamp: {
+    type: Number,
+    default: () => Math.floor(Date.now() / 1000),
   },
 });
 

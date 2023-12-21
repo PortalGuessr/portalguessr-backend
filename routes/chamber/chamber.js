@@ -9,9 +9,8 @@ const router = Router();
 // ! GET /chambers
 router.get("/", async (req, res) => {
   try {
-    const response = await Chamber.find();
-
-    res.json(response);
+    const result = await Chamber.find();
+    res.json(result);
   } catch (error) {
     res.status(400).json({ errno: 400, error });
   }
@@ -22,9 +21,8 @@ router.get("/", async (req, res) => {
 router.get("/:id", async (req, res) => {
   try {
     const id = req.params.id;
-    const response = await Chamber.findById(id);
-
-    res.json(response);
+    const result = await Chamber.findById(id);
+    res.json(result);
   } catch (error) {
     res.status(400).json({ errno: 400, error });
   }
@@ -37,9 +35,8 @@ router.get("/random/:amount", async (req, res) => {
   const query = { $sample: { size: parseInt(amount) } };
 
   try {
-    const response = await Chamber.aggregate([query]);
-
-    res.json(response);
+    const result = await Chamber.aggregate([query]);
+    res.json(result);
   } catch (error) {
     res.status(400).json({ errno: 400, error });
   }
@@ -52,11 +49,9 @@ router.get("/random/:amount/:difficulty", async (req, res) => {
     const amount = req.params.amount;
     const difficulty = req.params.difficulty;
     const difficultyContinuation = convertToEndpoints(difficulty);
-
     const result = await Chamber.find({ difficulty: difficultyContinuation });
     const shuffledResult = shuffleArray(result);
     const slicedResult = shuffledResult.slice(0, amount);
-
     res.json(slicedResult);
   } catch (error) {
     res.status(400).json({ errno: 400, error });
@@ -67,12 +62,16 @@ router.get("/random/:amount/:difficulty", async (req, res) => {
 // ! POST /chambers/new
 router.post("/new", async (req, res) => {
   try {
-    const { url, difficulty, answer, fileId, bhHash } = req.body;
-
-    const newChamber = new Chamber({ url, difficulty, answer, fileId, bhHash });
-    const response = await newChamber.save();
-
-    res.json(response);
+    const { url, difficulty, answer, chamberId, bhHash } = req.body;
+    const newChamber = new Chamber({
+      url,
+      difficulty,
+      answer,
+      chamberId,
+      bhHash,
+    });
+    const result = await newChamber.save();
+    res.json(result);
   } catch (error) {
     res.status(400).json({ errno: 400, error });
   }
@@ -83,9 +82,8 @@ router.post("/new", async (req, res) => {
 router.delete("/:id", async (req, res) => {
   try {
     const id = req.params.id;
-    const response = await Chamber.findByIdAndDelete(id);
-
-    res.json(response);
+    const result = await Chamber.findByIdAndDelete(id);
+    res.json(result);
   } catch (error) {
     res.status(400).json({ errno: 400, error });
   }
@@ -97,13 +95,11 @@ router.patch("/:id", async (req, res) => {
   try {
     const id = req.params.id;
     const body = req.body;
-
-    const response = await Chamber.findByIdAndUpdate(id, {
+    const result = await Chamber.findByIdAndUpdate(id, {
       ...body,
-      updatedDate: new Date(),
+      updatedStamp: Math.floor(Date.now() / 1000),
     });
-
-    res.json(response);
+    res.json(result);
   } catch (error) {
     res.status(400).json({ errno: 400, error });
   }

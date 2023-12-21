@@ -1,7 +1,7 @@
 import mongoose from "mongoose";
 import crypto from "crypto";
 
-const ChamberSubmissionSchema = new mongoose.Schema({
+const SubmissionSchema = new mongoose.Schema({
   submissionUrl: {
     type: String,
     required: true,
@@ -11,7 +11,10 @@ const ChamberSubmissionSchema = new mongoose.Schema({
     type: String,
     required: true,
     unique: true,
-    default: `${crypto.randomBytes(8).toString("hex")}-${new Date()}`,
+    default: () =>
+      `${crypto.randomBytes(6).toString("hex")}-${Math.floor(
+        Date.now() / 1000
+      )}`,
   },
   submissionUserId: {
     type: Number,
@@ -23,21 +26,18 @@ const ChamberSubmissionSchema = new mongoose.Schema({
     unique: true,
     default: crypto.randomBytes(8).readUint32LE(0),
   },
-  createdDate: {
-    type: Date,
+  createdStamp: {
+    type: Number,
     required: true,
-    default: new Date(),
+    default: () => Math.floor(Date.now() / 1000),
   },
-  updatedDate: {
-    type: Date,
+  updatedStamp: {
+    type: Number,
     required: true,
-    default: new Date(),
+    default: () => Math.floor(Date.now() / 1000),
   },
 });
 
-const ChamberSubmission = mongoose.model(
-  "ChamberSubmission",
-  ChamberSubmissionSchema
-);
+const Submission = mongoose.model("Submission", SubmissionSchema);
 
-export default ChamberSubmission;
+export default Submission;
