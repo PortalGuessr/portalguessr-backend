@@ -40,6 +40,10 @@ const HistorySchema = new mongoose.Schema({
     type: String,
     default: "",
   },
+  difficulty: {
+    type: String,
+    default: "",
+  },
   createdStamp: {
     type: Number,
     required: true,
