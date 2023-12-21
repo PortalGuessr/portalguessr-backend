@@ -17,7 +17,7 @@ const ChamberSchema = new mongoose.Schema({
   },
   chamberId: {
     type: String,
-    default: () => crypto.randomBytes(16).toString("hex"),
+    default: () => crypto.randomBytes(6).toString("hex"),
   },
   bhHash: {
     type: String,

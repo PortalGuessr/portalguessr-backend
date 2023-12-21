@@ -6,7 +6,7 @@ const HistorySchema = new mongoose.Schema({
     type: String,
     required: true,
     unique: true,
-    default: () => crypto.randomBytes(16).toString("hex"),
+    default: () => crypto.randomBytes(6).toString("hex"),
   },
   total: {
     type: Number,
