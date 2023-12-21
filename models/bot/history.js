@@ -6,39 +6,39 @@ const HistorySchema = new mongoose.Schema({
     type: String,
     required: true,
     unique: true,
-    default: () => crypto.randomBytes(8).toString("hex"),
+    default: () => crypto.randomBytes(16).toString("hex"),
   },
   total: {
     type: Number,
-    required: true,
+    default: 0,
   },
   solved: {
     type: Number,
-    required: true,
+    default: 0,
   },
   timeout: {
     type: Number,
-    required: true,
+    default: 0,
   },
   skipped: {
     type: Number,
-    required: true,
+    default: 0,
   },
   mvp: {
     type: String,
-    required: true,
+    default: "",
   },
   participators: {
     type: Array,
-    required: true,
+    default: [],
   },
   chambers: {
     type: Array,
-    required: true,
+    default: [],
   },
   prompterUserId: {
     type: String,
-    required: true,
+    default: "",
   },
   createdStamp: {
     type: Number,
