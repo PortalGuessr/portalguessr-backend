@@ -39,7 +39,6 @@ const HistorySchema = new mongoose.Schema({
   prompterUserId: {
     type: String,
     required: true,
-    unique: true,
   },
   createdStamp: {
     type: Number,
