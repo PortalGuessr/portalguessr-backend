@@ -11,10 +11,7 @@ const SubmissionSchema = new mongoose.Schema({
     type: String,
     required: true,
     unique: true,
-    default: () =>
-      `${crypto.randomBytes(6).toString("hex")}-${Math.floor(
-        Date.now() / 1000
-      )}`,
+    default: () => crypto.randomBytes(8).toString("hex"),
   },
   submissionUserId: {
     type: Number,

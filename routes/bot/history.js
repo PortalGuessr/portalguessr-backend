@@ -24,13 +24,25 @@ router.get("/:historyId", async (req, res) => {
 
 router.post("/", async (req, res) => {
   try {
-    const { totalGuessrs, finishedGuessrs, chambersHistory, sessionHistory } =
-      req.body;
+    const {
+      total,
+      solved,
+      timeout,
+      skipped,
+      mvp,
+      participators,
+      chambers,
+      prompterUserId,
+    } = req.body;
     const newHistory = new History({
-      totalGuessrs,
-      finishedGuessrs,
-      chambersHistory,
-      sessionHistory,
+      total,
+      solved,
+      timeout,
+      skipped,
+      mvp,
+      participators,
+      chambers,
+      prompterUserId,
     });
     const result = await newHistory.save();
     res.json(result);
@@ -42,15 +54,27 @@ router.post("/", async (req, res) => {
 router.patch("/:historyId", async (req, res) => {
   try {
     const historyId = req.params.historyId;
-    const { totalGuessrs, finishedGuessrs, chambersHistory, sessionHistory } =
-      req.body;
+    const {
+      total,
+      solved,
+      timeout,
+      skipped,
+      mvp,
+      participators,
+      chambers,
+      prompterUserId,
+    } = req.body;
     const result = await History.findOneAndUpdate(
       { historyId },
       {
-        totalGuessrs,
-        finishedGuessrs,
-        chambersHistory,
-        sessionHistory,
+        total,
+        solved,
+        timeout,
+        skipped,
+        mvp,
+        participators,
+        chambers,
+        prompterUserId,
         updatedStamp: Math.floor(Date.now() / 1000),
       }
     );

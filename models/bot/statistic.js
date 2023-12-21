@@ -5,10 +5,7 @@ const StatisticSchema = new mongoose.Schema({
     type: String,
     unique: true,
     required: true,
-    default: () =>
-      `${crypto.randomBytes(6).toString("hex")}-${Math.floor(
-        Date.now() / 1000
-      )}`,
+    default: () => crypto.randomBytes(8).toString("hex"),
   },
   scores: {
     type: Object,
