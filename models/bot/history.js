@@ -21,18 +21,11 @@ const HistorySchema = new mongoose.Schema({
   },
   chambersHistory: {
     type: Array,
-    default: [{ id: "", isSolved: false, isSkipped: false }], // Example array.
+    default: [],
   },
   sessionHistory: {
     type: Object,
-    default: {
-      guessrSolved: 0,
-      guessrTimeout: 0,
-      guessrSkipped: 0,
-      sessionUsersParticipated: [],
-      sessionUsersCorrect: [],
-      sessionStopped: False,
-    },
+    default: {},
   },
   createdStamp: {
     type: Number,

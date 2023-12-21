@@ -69,3 +69,5 @@ router.delete("/:historyId", async (req, res) => {
     res.status(400).json({ errno: 400, error });
   }
 });
+
+export default router;
