@@ -13,6 +13,7 @@ import cors from "cors";
 import chamberRoute from "./routes/chamber/chamber.js";
 import statisticRoute from "./routes/bot/statistic.js";
 import historyRoute from "./routes/bot/history.js";
+import submissionRoute from "./routes/bot/submission.js";
 
 const app = express();
 app.use(cors());
@@ -21,10 +22,16 @@ app.use(express.json());
 app.use("/chambers", chamberRoute);
 app.use("/bot/lb", statisticRoute);
 app.use("/bot/history", historyRoute);
+app.use("/bot/submission", submissionRoute);
 
 dotenv.config();
 const DATABASE_URI = process.env.MONGODB_DATABASE_URL;
 const PORT = process.env.SERVER_PORT || 443;
+
+const IMGBB_API_KEY = process.env.IMGBB_API_KEY;
+const IMGBB_URL = process.env.IMGBB_URL;
+
+export { IMGBB_API_KEY, IMGBB_URL };
 
 // Connecting to MongoDB then establishing a connection.
 async function main(url, port) {

@@ -1,36 +1,40 @@
 import mongoose from "mongoose";
-import crypto from "crypto";
 
 const SubmissionSchema = new mongoose.Schema({
-  submissionUrl: {
+  status: {
+    type: String,
+    default: "pending",
+  },
+  url: {
     type: String,
     required: true,
-    unique: true,
+  },
+  difficulty: {
+    type: String,
+    required: true,
+  },
+  answer: {
+    type: String,
+    require: true,
   },
   submissionId: {
     type: String,
-    required: true,
-    unique: true,
     default: () => crypto.randomBytes(6).toString("hex"),
   },
-  submissionUserId: {
-    type: Number,
-    unique: true,
-    default: crypto.randomBytes(8).readUint32LE(0),
+  submitter: {
+    type: String,
+    required: true,
   },
-  submissionUserDiscordId: {
-    type: Number,
-    unique: true,
-    default: crypto.randomBytes(8).readUint32LE(0),
+  bhHash: {
+    type: String,
+    default: "",
   },
   createdStamp: {
     type: Number,
-    required: true,
     default: () => Math.floor(Date.now() / 1000),
   },
   updatedStamp: {
     type: Number,
-    required: true,
     default: () => Math.floor(Date.now() / 1000),
   },
 });
