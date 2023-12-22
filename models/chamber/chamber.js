@@ -21,7 +21,8 @@ const ChamberSchema = new mongoose.Schema({
   },
   bhHash: {
     type: String,
-    default: "",
+    default: () =>
+      `placeholder-${crypto.randomBytes(6).toString("hex")}-${new Date()}`,
   },
   createdStamp: {
     type: Number,

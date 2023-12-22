@@ -1,7 +1,5 @@
 import { Router } from "express";
 import Submission from "../../models/chamber/submission.js";
-import { convertToHash } from "../../utils/convertToHash.js";
-import { isBlurhashValid } from "blurhash";
 
 const router = Router();
 
@@ -28,18 +26,7 @@ router.get("/:submissionId", async (req, res) => {
 
 router.post("/", async (req, res) => {
   try {
-    const { url, answer, difficulty, submitter } = req.body;
-
-    const bhHash = await convertToHash(url);
-
-    if (!isBlurhashValid(bhHash)) {
-      res.status(500).json({
-        errno: 500,
-        error: `Internal server error! Blurhash invalid! bhHash: ${bhHash}`,
-      });
-
-      return;
-    }
+    const { url, answer, difficulty, submitter, bhHash } = req.body;
 
     const newSubmission = new Submission({
       url,
