@@ -28,11 +28,6 @@ dotenv.config();
 const DATABASE_URI = process.env.MONGODB_DATABASE_URL;
 const PORT = process.env.SERVER_PORT || 443;
 
-const IMGBB_API_KEY = process.env.IMGBB_API_KEY;
-const IMGBB_URL = process.env.IMGBB_URL;
-
-export { IMGBB_API_KEY, IMGBB_URL };
-
 // Connecting to MongoDB then establishing a connection.
 async function main(url, port) {
   try {
