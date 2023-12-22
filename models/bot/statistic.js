@@ -6,7 +6,7 @@ const StatisticSchema = new mongoose.Schema({
     type: String,
     unique: true,
     required: true,
-    default: () => crypto.randomBytes(6).toString("hex"),
+    default: () => `u:${crypto.randomBytes(6).toString("hex")}:d`,
   },
   scores: {
     type: Object,

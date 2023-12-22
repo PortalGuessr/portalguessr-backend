@@ -20,7 +20,7 @@ const SubmissionSchema = new mongoose.Schema({
   },
   submissionId: {
     type: String,
-    default: () => crypto.randomBytes(6).toString("hex"),
+    default: () => `s:${crypto.randomBytes(6).toString("hex")}:d`,
   },
   submitter: {
     type: String,
