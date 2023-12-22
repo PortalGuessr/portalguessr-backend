@@ -21,8 +21,8 @@ app.use(express.json());
 
 app.use("/chambers", chamberRoute);
 app.use("/bot/lb", statisticRoute);
-app.use("/bot/history", historyRoute);
-app.use("/bot/submission", submissionRoute);
+app.use("/bot/histories", historyRoute);
+app.use("/bot/submissions", submissionRoute);
 
 dotenv.config();
 const DATABASE_URI = process.env.MONGODB_DATABASE_URL;
