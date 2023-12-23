@@ -66,12 +66,12 @@ router.get("/random/:amount/:difficulty", async (req, res) => {
 // ! POST /chambers/new
 router.post("/new", async (req, res) => {
   try {
-    const { url, difficulty, answer, chamberId, bhHash } = req.body;
+    const { url, difficulty, answer, bhHash } = req.body;
+
     const newChamber = new Chamber({
       url,
       difficulty,
       answer,
-      chamberId,
       bhHash,
     });
     const result = await newChamber.save();

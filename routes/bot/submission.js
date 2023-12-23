@@ -1,5 +1,6 @@
 import { Router } from "express";
 import Submission from "../../models/chamber/submission.js";
+import { convertToHash } from "../../utils/convertToHash.js";
 
 const router = Router();
 
@@ -26,14 +27,15 @@ router.get("/:submissionId", async (req, res) => {
 
 router.post("/", async (req, res) => {
   try {
-    const { url, answer, difficulty, submitter, bhHash } = req.body;
+    const { url, answer, difficulty, submitter } = req.body;
+    const bhHash = await convertToHash(url);
 
     const newSubmission = new Submission({
       url,
       answer,
       difficulty,
-      bhHash,
       submitter,
+      bhHash,
     });
     const result = await newSubmission.save();
 
