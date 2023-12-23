@@ -2,6 +2,14 @@ import mongoose from "mongoose";
 import crypto from "crypto";
 
 const ChamberSchema = new mongoose.Schema({
+  chamberId: {
+    type: String,
+    default: () => `c:${crypto.randomBytes(6).toString("hex")}:d`,
+  },
+  submitter: {
+    type: String,
+    default: "706330866267193344",
+  },
   url: {
     type: String,
     unique: true,
@@ -14,10 +22,6 @@ const ChamberSchema = new mongoose.Schema({
   answer: {
     type: String,
     required: true,
-  },
-  chamberId: {
-    type: String,
-    default: () => `c:${crypto.randomBytes(6).toString("hex")}:d`,
   },
   bhHash: {
     type: String,

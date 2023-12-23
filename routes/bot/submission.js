@@ -28,7 +28,7 @@ router.get("/:submissionId", async (req, res) => {
 router.get("/status/:status", async (req, res) => {
   try {
     const status = req.params.status;
-    const result = await Submission.findOne({ status });
+    const result = await Submission.find({ status });
 
     res.json(result);
   } catch (error) {
