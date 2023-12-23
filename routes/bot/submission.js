@@ -25,6 +25,17 @@ router.get("/:submissionId", async (req, res) => {
   }
 });
 
+router.get("/status/:status", async (req, res) => {
+  try {
+    const status = req.params.status;
+    const result = await Submission.findOne({ status });
+
+    res.json(result);
+  } catch (error) {
+    res.status(400).json({ errno: 400, error });
+  }
+});
+
 router.post("/", async (req, res) => {
   try {
     const { url, answer, difficulty, submitter } = req.body;
