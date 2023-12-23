@@ -2,7 +2,7 @@ import mongoose from "mongoose";
 import crypto from "crypto";
 
 const ChamberSchema = new mongoose.Schema({
-  chamberId: {
+  fileId: {
     type: String,
     default: () => `c:${crypto.randomBytes(6).toString("hex")}:d`,
   },
