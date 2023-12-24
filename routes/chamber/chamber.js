@@ -6,8 +6,6 @@ import { authenticateApiKey } from "../../middlewares/authenticate.js";
 
 const router = Router();
 
-// Get all chambers.
-// ! GET /chambers
 router.get("/", async (req, res) => {
   try {
     const result = await Chamber.find();
@@ -18,8 +16,6 @@ router.get("/", async (req, res) => {
   }
 });
 
-// Get a specific chamber.
-// ! GET /chambers/<id>
 router.get("/:id", async (req, res) => {
   try {
     const id = req.params.id;
@@ -31,8 +27,6 @@ router.get("/:id", async (req, res) => {
   }
 });
 
-// Get a random chamber, amount is the parameter for how much do we want to retrieve.
-// ! GET /chambers/random/<amount>
 router.get("/random/:amount", async (req, res) => {
   const amount = req.params.amount;
   const query = { $sample: { size: parseInt(amount) } };
@@ -46,8 +40,6 @@ router.get("/random/:amount", async (req, res) => {
   }
 });
 
-// Get a random number based on the difficulty.
-// ! GET /chambers/random/<amount>/<difficulty>
 router.get("/random/:amount/:difficulty", async (req, res) => {
   try {
     const amount = req.params.amount;
@@ -63,8 +55,6 @@ router.get("/random/:amount/:difficulty", async (req, res) => {
   }
 });
 
-// Post a new chamber.
-// ! POST /chambers/new
 router.post("/new", authenticateApiKey, async (req, res) => {
   try {
     const { url, difficulty, answer, bhHash, submitter } = req.body;
@@ -84,8 +74,6 @@ router.post("/new", authenticateApiKey, async (req, res) => {
   }
 });
 
-// Delete a chamber.
-// ! DELETE /chambers/<id>
 router.delete("/:id", authenticateApiKey, async (req, res) => {
   try {
     const id = req.params.id;
@@ -97,8 +85,6 @@ router.delete("/:id", authenticateApiKey, async (req, res) => {
   }
 });
 
-// Edit an image.
-// ! PATCH /chambers/<id>
 router.patch("/:id", authenticateApiKey, async (req, res) => {
   try {
     const id = req.params.id;

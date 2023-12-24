@@ -4,8 +4,6 @@ import { authenticateApiKey } from "../../middlewares/authenticate.js";
 
 const router = Router();
 
-// Get all scores from Statistic.
-// ! GET /bot/lb/
 router.get("/", async (req, res) => {
   try {
     const result = await Statistic.find();
@@ -16,8 +14,6 @@ router.get("/", async (req, res) => {
   }
 });
 
-// Get a single score from Statistic.
-// ! GET /bot/lb/<userId>/
 router.get("/:userId", async (req, res) => {
   try {
     const userId = req.params.userId;
@@ -29,8 +25,6 @@ router.get("/:userId", async (req, res) => {
   }
 });
 
-// Add a new score to the Statistic.
-// ! POST /bot/lb/<userId>/
 router.post("/:userId", authenticateApiKey, async (req, res) => {
   try {
     const userId = req.params.userId;
@@ -47,8 +41,6 @@ router.post("/:userId", authenticateApiKey, async (req, res) => {
   }
 });
 
-// Delete an already existing score from Statistic.
-// ! DELETE /bot/lb/<userId>/
 router.delete("/:userId", authenticateApiKey, async (req, res) => {
   try {
     const userId = req.params.userId;
@@ -60,8 +52,6 @@ router.delete("/:userId", authenticateApiKey, async (req, res) => {
   }
 });
 
-// Edit an already existing score from Statistic.
-// ! PATCH /bot/lb/<userId>/
 router.patch("/:userId", authenticateApiKey, async (req, res) => {
   try {
     const userId = req.params.userId;

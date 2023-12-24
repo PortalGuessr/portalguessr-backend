@@ -5,7 +5,7 @@ This is the backend server for PortalGuessr, powered by Express, utilizing a RES
 ## Installation
 
 - Download the latest release if available.
-- Create a `.env` file containing `MONGODB_DATABASE_URL` for your MongoDB URL and `SERVER_PORT` if you want to specify the server's port.
+- Create a `.env` file containing `MONGODB_DATABASE_URL` for your MongoDB URL, `SERVER_PORT`, and a random generated `API_KEY` for the basic auth.
 - Run `npm install` to install the required dependencies.
 - Run `npm start` to start the server or `npm run dev` with Nodemon.
 
