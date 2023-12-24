@@ -1,5 +1,6 @@
 import { Router } from "express";
 import History from "../../models/bot/history.js";
+import { authenticateApiKey } from "../../middlewares/authenticate.js";
 
 const router = Router();
 
@@ -24,7 +25,7 @@ router.get("/:historyId", async (req, res) => {
   }
 });
 
-router.post("/", async (req, res) => {
+router.post("/", authenticateApiKey, async (req, res) => {
   try {
     const {
       total,
@@ -56,7 +57,7 @@ router.post("/", async (req, res) => {
   }
 });
 
-router.patch("/:historyId", async (req, res) => {
+router.patch("/:historyId", authenticateApiKey, async (req, res) => {
   try {
     const historyId = req.params.historyId;
     const {
@@ -92,7 +93,7 @@ router.patch("/:historyId", async (req, res) => {
   }
 });
 
-router.delete("/:historyId", async (req, res) => {
+router.delete("/:historyId", authenticateApiKey, async (req, res) => {
   try {
     const historyId = req.params.historyId;
     const result = await History.findOneAndDelete({ historyId });

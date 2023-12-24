@@ -1,5 +1,6 @@
 import { Router } from "express";
 import Statistic from "../../models/bot/statistic.js";
+import { authenticateApiKey } from "../../middlewares/authenticate.js";
 
 const router = Router();
 
@@ -30,7 +31,7 @@ router.get("/:userId", async (req, res) => {
 
 // Add a new score to the Statistic.
 // ! POST /bot/lb/<userId>/
-router.post("/:userId", async (req, res) => {
+router.post("/:userId", authenticateApiKey, async (req, res) => {
   try {
     const userId = req.params.userId;
     const scores = req.body.scores;
@@ -48,7 +49,7 @@ router.post("/:userId", async (req, res) => {
 
 // Delete an already existing score from Statistic.
 // ! DELETE /bot/lb/<userId>/
-router.delete("/:userId", async (req, res) => {
+router.delete("/:userId", authenticateApiKey, async (req, res) => {
   try {
     const userId = req.params.userId;
     const result = await Statistic.deleteOne({ userId });
@@ -61,7 +62,7 @@ router.delete("/:userId", async (req, res) => {
 
 // Edit an already existing score from Statistic.
 // ! PATCH /bot/lb/<userId>/
-router.patch("/:userId", async (req, res) => {
+router.patch("/:userId", authenticateApiKey, async (req, res) => {
   try {
     const userId = req.params.userId;
     const scores = req.body.scores;

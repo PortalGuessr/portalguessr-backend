@@ -2,6 +2,7 @@ import { Router } from "express";
 import Chamber from "../../models/chamber/chamber.js";
 import { shuffleArray } from "../../utils/shuffleArray.js";
 import { convertToEndpoints } from "../../utils/convertToEndpoints.js";
+import { authenticateApiKey } from "../../middlewares/authenticate.js";
 
 const router = Router();
 
@@ -64,7 +65,7 @@ router.get("/random/:amount/:difficulty", async (req, res) => {
 
 // Post a new chamber.
 // ! POST /chambers/new
-router.post("/new", async (req, res) => {
+router.post("/new", authenticateApiKey, async (req, res) => {
   try {
     const { url, difficulty, answer, bhHash, submitter } = req.body;
 
@@ -85,7 +86,7 @@ router.post("/new", async (req, res) => {
 
 // Delete a chamber.
 // ! DELETE /chambers/<id>
-router.delete("/:id", async (req, res) => {
+router.delete("/:id", authenticateApiKey, async (req, res) => {
   try {
     const id = req.params.id;
     const result = await Chamber.findByIdAndDelete(id);
@@ -98,7 +99,7 @@ router.delete("/:id", async (req, res) => {
 
 // Edit an image.
 // ! PATCH /chambers/<id>
-router.patch("/:id", async (req, res) => {
+router.patch("/:id", authenticateApiKey, async (req, res) => {
   try {
     const id = req.params.id;
     const body = req.body;

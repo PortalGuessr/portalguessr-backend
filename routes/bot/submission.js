@@ -1,6 +1,7 @@
 import { Router } from "express";
 import Submission from "../../models/chamber/submission.js";
 import { convertToHash } from "../../utils/convertToHash.js";
+import { authenticateApiKey } from "../../middlewares/authenticate.js";
 
 const router = Router();
 
@@ -36,7 +37,7 @@ router.get("/status/:status", async (req, res) => {
   }
 });
 
-router.post("/", async (req, res) => {
+router.post("/", authenticateApiKey, async (req, res) => {
   try {
     const { url, answer, difficulty, submitter } = req.body;
     const bhHash = await convertToHash(url);
@@ -56,7 +57,7 @@ router.post("/", async (req, res) => {
   }
 });
 
-router.patch("/:submissionId", async (req, res) => {
+router.patch("/:submissionId", authenticateApiKey, async (req, res) => {
   try {
     const submissionId = req.params.submissionId;
     const status = req.body.status;
@@ -71,7 +72,7 @@ router.patch("/:submissionId", async (req, res) => {
   }
 });
 
-router.delete("/:submissionId", async (req, res) => {
+router.delete("/:submissionId", authenticateApiKey, async (req, res) => {
   try {
     const submissionId = req.params.submissionId;
     const result = await Submission.findOneAndDelete({ submissionId });
