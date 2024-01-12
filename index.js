@@ -1,6 +1,6 @@
 /* 
 ================================================================================
-Copyright (c) 2023 XnonXte
+Copyright (c) 2023-Present XnonXte
 This project is released under MIT License.
 GitHub repo: https://github.com/PortalGuessr/PortalGuessr-Backend
 ================================================================================

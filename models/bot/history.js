@@ -1,12 +1,12 @@
 import mongoose from "mongoose";
-import crypto from "crypto";
+import { generateDocumentId } from "../../utils/generateDocumentId";
 
 const HistorySchema = new mongoose.Schema({
   historyId: {
     type: String,
     required: true,
     unique: true,
-    default: () => `h:${crypto.randomBytes(6).toString("hex")}:d`,
+    default: () => generateDocumentId("HS"),
   },
   total: {
     type: Number,

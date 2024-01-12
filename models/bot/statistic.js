@@ -1,12 +1,12 @@
 import mongoose from "mongoose";
-import crypto from "crypto";
+import { generateDocumentId } from "../../utils/generateDocumentId";
 
 const StatisticSchema = new mongoose.Schema({
   userId: {
     type: String,
     unique: true,
     required: true,
-    default: () => `u:${crypto.randomBytes(6).toString("hex")}:d`,
+    default: () => generateDocumentId("US"),
   },
   scores: {
     type: Object,

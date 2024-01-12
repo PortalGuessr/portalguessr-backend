@@ -1,5 +1,5 @@
 import mongoose from "mongoose";
-import crypto from "crypto";
+import { generateDocumentId } from "../../utils/generateDocumentId";
 
 const SubmissionSchema = new mongoose.Schema({
   status: {
@@ -20,7 +20,7 @@ const SubmissionSchema = new mongoose.Schema({
   },
   submissionId: {
     type: String,
-    default: () => `s:${crypto.randomBytes(6).toString("hex")}:d`,
+    default: () => generateDocumentId("SB"),
   },
   submitter: {
     type: String,
@@ -28,8 +28,7 @@ const SubmissionSchema = new mongoose.Schema({
   },
   bhHash: {
     type: String,
-    default: () =>
-      `placeholder-${crypto.randomBytes(6).toString("hex")}-${new Date()}`,
+    default: () => `placeholder-${generateDocumentId("BH")}`,
   },
   createdStamp: {
     type: Number,

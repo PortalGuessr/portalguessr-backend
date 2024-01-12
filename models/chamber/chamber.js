@@ -1,14 +1,14 @@
 import mongoose from "mongoose";
-import crypto from "crypto";
+import { generateDocumentId } from "../../utils/generateDocumentId";
 
 const ChamberSchema = new mongoose.Schema({
   fileId: {
     type: String,
-    default: () => `c:${crypto.randomBytes(6).toString("hex")}:d`,
+    default: () => generateDocumentId("CH"),
   },
   submitter: {
     type: String,
-    default: "706330866267193344",
+    default: "706330866267193344", // My own ID on Discord.
   },
   url: {
     type: String,
