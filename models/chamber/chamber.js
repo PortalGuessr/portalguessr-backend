@@ -1,5 +1,5 @@
 import mongoose from "mongoose";
-import { generateDocumentId } from "../../utils/generateDocumentId";
+import { generateDocumentId } from "../../utils/generateDocumentId.js";
 
 const ChamberSchema = new mongoose.Schema({
   fileId: {
