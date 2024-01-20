@@ -6,9 +6,21 @@ const router = Router();
 
 router.get("/", async (req, res) => {
   try {
-    const result = await Statistic.find();
+    const amount = req.query.amount;
+    const start = req.query.start;
+    const ascending = req.query.order === "asc" ? true : false;
 
-    res.json(result);
+    const result = await Statistic.find();
+    const sorted = result.slice().sort((a, b) => {
+      const eloCountA =
+        a.scores.Easy + a.scores.Medium + a.scores.Hard + a.scores["Very Hard"];
+      const eloCountB =
+        b.scores.Easy + b.scores.Medium + b.scores.Hard + b.scores["Very Hard"];
+
+      return ascending ? eloCountA - eloCountB : eloCountB - eloCountA;
+    });
+
+    res.json(sorted.slice(start - 1, start - 1 + amount));
   } catch (error) {
     res.status(400).json({ errno: 400, error });
   }

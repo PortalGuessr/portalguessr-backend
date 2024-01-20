@@ -7,7 +7,14 @@ const router = Router();
 
 router.get("/", async (req, res) => {
   try {
-    const result = await Submission.find();
+    const amount = req.query.amount;
+    const start = req.query.start;
+    const ascending = req.query.order === "asc" ? 1 : -1;
+
+    const result = await Submission.find()
+      .sort({ createdStamp: ascending })
+      .skip(start)
+      .limit(amount);
 
     res.json(result);
   } catch (error) {
