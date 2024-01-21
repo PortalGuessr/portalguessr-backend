@@ -11,13 +11,21 @@ router.get("/", async (req, res) => {
     const ascending = req.query.order === "asc" ? true : false;
 
     const result = await Statistic.find();
-    const sorted = result.slice().sort((a, b) => {
-      const eloCountA =
-        a.scores.Easy + a.scores.Medium + a.scores.Hard + a.scores["Very Hard"];
-      const eloCountB =
-        b.scores.Easy + b.scores.Medium + b.scores.Hard + b.scores["Very Hard"];
+    const sorted = result.slice().sort((user1, user2) => {
+      const eloCountUser1 =
+        user1.scores.Easy * 3 +
+        user1.scores.Medium * 5 +
+        user1.scores.Hard * 10 +
+        user1.scores["Very Hard"] * 15;
+      const eloCountUser2 =
+        user2.scores.Easy * 3 +
+        user2.scores.Medium * 5 +
+        user2.scores.Hard * 10 +
+        user2.scores["Very Hard"] * 15;
 
-      return ascending ? eloCountA - eloCountB : eloCountB - eloCountA;
+      return ascending
+        ? eloCountUser1 - eloCountUser2
+        : eloCountUser2 - eloCountUser1;
     });
 
     res.json(sorted.slice(start - 1, start - 1 + amount));
