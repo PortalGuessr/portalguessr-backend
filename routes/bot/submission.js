@@ -13,7 +13,25 @@ router.get("/", async (req, res) => {
 
     const result = await Submission.find()
       .sort({ createdStamp: ascending })
-      .skip(start)
+      .skip(start - 1)
+      .limit(amount);
+
+    res.json(result);
+  } catch (error) {
+    res.status(400).json({ errno: 400, error });
+  }
+});
+
+router.get("/status/:status", async (req, res) => {
+  try {
+    const status = req.params.status;
+    const amount = req.query.amount;
+    const start = req.query.start;
+    const ascending = req.query.order === "asc" ? 1 : -1;
+
+    const result = await Submission.find({ status })
+      .sort({ createdStamp: ascending })
+      .skip(start - 1)
       .limit(amount);
 
     res.json(result);
@@ -26,17 +44,6 @@ router.get("/:submissionId", async (req, res) => {
   try {
     const submissionId = req.params.submissionId;
     const result = await Submission.findOne({ submissionId });
-
-    res.json(result);
-  } catch (error) {
-    res.status(400).json({ errno: 400, error });
-  }
-});
-
-router.get("/status/:status", async (req, res) => {
-  try {
-    const status = req.params.status;
-    const result = await Submission.find({ status });
 
     res.json(result);
   } catch (error) {

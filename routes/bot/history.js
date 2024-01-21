@@ -12,7 +12,7 @@ router.get("/", async (req, res) => {
 
     const result = await History.find()
       .sort({ createdStamp: ascending })
-      .skip(start)
+      .skip(start - 1)
       .limit(amount);
 
     res.json(result);
