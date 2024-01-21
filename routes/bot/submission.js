@@ -74,10 +74,10 @@ router.post("/", authenticateApiKey, async (req, res) => {
 router.patch("/:submissionId", authenticateApiKey, async (req, res) => {
   try {
     const submissionId = req.params.submissionId;
-    const status = req.body.status;
+    const body = req.body;
     const result = await Submission.findOneAndUpdate(
       { submissionId },
-      { status }
+      { ...body }
     );
 
     res.json(result);
