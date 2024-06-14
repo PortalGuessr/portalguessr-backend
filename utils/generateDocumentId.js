@@ -5,6 +5,5 @@ export function generateDocumentId(dataType) {
   const myDate = new Date();
   const currentYear = myDate.getFullYear().toString().slice(2);
   const currentMonth = myDate.getMonth();
-
   return hex + dataType + currentYear + currentMonth;
 }

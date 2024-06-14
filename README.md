@@ -19,8 +19,8 @@ This is the backend server for PortalGuessr, powered by Express, utilizing a RES
 
 ## Trello Workspace
 
-The official trello workspace for this project: <https://trello.com/b/NgVubCDX/portalguessr-fullstack>
+The official trello workspace for this project [here](https://trello.com/b/NgVubCDX/portalguessr-fullstack).
 
 ## Discord
 
-Join the Discord server to get the latest news about PortalGuessr: https://discord.gg/dDbgtFb2KC
+Join the Discord server to get the latest news about PortalGuessr [here](https://discord.gg/dDbgtFb2KC).

@@ -1,11 +1,3 @@
-/* 
-================================================================================
-Copyright (c) 2023-Present XnonXte
-This project is released under MIT License.
-GitHub repo: https://github.com/PortalGuessr/PortalGuessr-Backend
-================================================================================
-*/
-
 import express from "express";
 import mongoose from "mongoose";
 import dotenv from "dotenv";
@@ -18,25 +10,20 @@ import submissionRoute from "./routes/bot/submission.js";
 const app = express();
 app.use(cors());
 app.use(express.json());
-
 app.use("/chambers", chamberRoute);
 app.use("/bot/lb", statisticRoute);
 app.use("/bot/histories", historyRoute);
 app.use("/bot/submissions", submissionRoute);
-
 dotenv.config();
 const DATABASE_URI = process.env.MONGODB_DATABASE_URL;
 const PORT = process.env.SERVER_PORT || 443;
 
-// Connecting to MongoDB then establishing a connection.
 async function main(url, port) {
   try {
     connectMongoDB(url);
-
     await new Promise((resolve, reject) => {
       mongoose.connection.on("open", resolve).on("error", reject);
     });
-
     startServer(port);
   } catch (error) {
     console.error(error.message);

@@ -55,7 +55,5 @@ const HistorySchema = new mongoose.Schema({
     default: () => Math.floor(Date.now() / 1000),
   },
 });
-
 const History = mongoose.model("History", HistorySchema);
-
 export default History;

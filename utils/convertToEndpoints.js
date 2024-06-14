@@ -1,7 +1,3 @@
-/**
- * Convert to continuation of the type GuessrDifficulty.
- * @param {"e"|"m"|"h"|"vh"} difficulty - the difficulty (e/m/h/vh).
- */
 export function convertToEndpoints(difficulty) {
   let difficultyContinuation;
   switch (difficulty) {
