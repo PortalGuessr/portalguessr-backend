@@ -37,7 +37,5 @@ const ChamberSchema = new mongoose.Schema({
     default: () => Math.floor(Date.now() / 1000),
   },
 });
-
 const Chamber = mongoose.model("Chamber", ChamberSchema);
-
 export default Chamber;

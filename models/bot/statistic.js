@@ -29,7 +29,5 @@ const StatisticSchema = new mongoose.Schema({
     default: () => Math.floor(Date.now() / 1000),
   },
 });
-
 const Statistic = mongoose.model("Statistic", StatisticSchema);
-
 export default Statistic;

@@ -39,7 +39,5 @@ const SubmissionSchema = new mongoose.Schema({
     default: () => Math.floor(Date.now() / 1000),
   },
 });
-
 const Submission = mongoose.model("Submission", SubmissionSchema);
-
 export default Submission;

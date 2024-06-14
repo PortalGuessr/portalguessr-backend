@@ -9,7 +9,6 @@ router.get("/", async (req, res) => {
     const amount = req.query.amount;
     const start = req.query.start;
     const ascending = req.query.order === "asc" ? true : false;
-
     const result = await Statistic.find();
     const sorted = result.slice().sort((user1, user2) => {
       const eloCountUser1 =
@@ -22,12 +21,10 @@ router.get("/", async (req, res) => {
         user2.scores.Medium * 5 +
         user2.scores.Hard * 10 +
         user2.scores["Very Hard"] * 15;
-
       return ascending
         ? eloCountUser1 - eloCountUser2
         : eloCountUser2 - eloCountUser1;
     });
-
     res.json(sorted.slice(start - 1, start - 1 + amount));
   } catch (error) {
     res.status(400).json({ errno: 400, error });
@@ -38,7 +35,6 @@ router.get("/:userId", async (req, res) => {
   try {
     const userId = req.params.userId;
     const result = await Statistic.findOne({ userId });
-
     res.json(result);
   } catch (error) {
     res.status(400).json({ errno: 400, error });
@@ -54,7 +50,6 @@ router.post("/:userId", authenticateApiKey, async (req, res) => {
       scores,
     });
     const result = await newScore.save();
-
     res.json(result);
   } catch (error) {
     res.status(400).json({ errno: 400, error });
@@ -65,7 +60,6 @@ router.delete("/:userId", authenticateApiKey, async (req, res) => {
   try {
     const userId = req.params.userId;
     const result = await Statistic.deleteOne({ userId });
-
     res.json(result);
   } catch (error) {
     res.status(400).json({ errno: 400, error });
@@ -78,9 +72,8 @@ router.patch("/:userId", authenticateApiKey, async (req, res) => {
     const scores = req.body.scores;
     const result = await Statistic.findOneAndUpdate(
       { userId },
-      { scores, updatedStamp: Math.floor(Date.now() / 1000) }
+      { scores, updatedStamp: Math.floor(Date.now() / 1000) },
     );
-
     res.json(result);
   } catch (error) {
     res.status(400).json({ errno: 400, error });

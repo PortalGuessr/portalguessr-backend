@@ -10,12 +10,10 @@ router.get("/", async (req, res) => {
     const amount = req.query.amount;
     const start = req.query.start;
     const ascending = req.query.order === "asc" ? 1 : -1;
-
     const result = await Submission.find()
       .sort({ createdStamp: ascending })
       .skip(start - 1)
       .limit(amount);
-
     res.json(result);
   } catch (error) {
     res.status(400).json({ errno: 400, error });
@@ -28,12 +26,10 @@ router.get("/status/:status", async (req, res) => {
     const amount = req.query.amount;
     const start = req.query.start;
     const ascending = req.query.order === "asc" ? 1 : -1;
-
     const result = await Submission.find({ status })
       .sort({ createdStamp: ascending })
       .skip(start - 1)
       .limit(amount);
-
     res.json(result);
   } catch (error) {
     res.status(400).json({ errno: 400, error });
@@ -44,7 +40,6 @@ router.get("/:submissionId", async (req, res) => {
   try {
     const submissionId = req.params.submissionId;
     const result = await Submission.findOne({ submissionId });
-
     res.json(result);
   } catch (error) {
     res.status(400).json({ errno: 400, error });
@@ -55,7 +50,6 @@ router.post("/", authenticateApiKey, async (req, res) => {
   try {
     const { url, answer, difficulty, submitter } = req.body;
     const bhHash = await convertToHash(url);
-
     const newSubmission = new Submission({
       url,
       answer,
@@ -64,7 +58,6 @@ router.post("/", authenticateApiKey, async (req, res) => {
       bhHash,
     });
     const result = await newSubmission.save();
-
     res.json(result);
   } catch (error) {
     res.status(400).json({ errno: 400, error });
@@ -77,9 +70,8 @@ router.patch("/:submissionId", authenticateApiKey, async (req, res) => {
     const body = req.body;
     const result = await Submission.findOneAndUpdate(
       { submissionId },
-      { ...body }
+      { ...body },
     );
-
     res.json(result);
   } catch (error) {
     res.status(400).json({ errno: 400, error });
@@ -90,7 +82,6 @@ router.delete("/:submissionId", authenticateApiKey, async (req, res) => {
   try {
     const submissionId = req.params.submissionId;
     const result = await Submission.findOneAndDelete({ submissionId });
-
     res.json(result);
   } catch (error) {
     res.status(400).json({ errno: 400, error });
